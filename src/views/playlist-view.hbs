@@ -1,0 +1,30 @@
+{{> menu active="dashboard"}}
+
+<section class="section">
+  <h1 class="title">{{title}}</h1>
+
+  <table class="table is-fullwidth">
+    <thead>
+      <th>Track</th>
+      <th>Artist</th>
+      <th>Duration</th>
+      <th></th>
+    </thead>
+    <tbody>
+      {{#each tracks}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{../playlist.title}}</td>
+          <td>{{duration}}</td>
+          <td>
+            <a href="/dashboard/playlist/{{../_id}}/deletetrack/{{_id}}" class="link">
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</section>
+
+{{> add-track }}
