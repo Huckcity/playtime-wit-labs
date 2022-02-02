@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "fname": "Adam",
+      "lname": "Gibbons",
+      "email": "adam.p.gibbons@gmail.com",
+      "password": "test",
+      "_id": "57bfd0ef-a107-477e-a0da-e8b4c0674115"
+    }
+  ]
+}

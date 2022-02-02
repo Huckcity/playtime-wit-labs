@@ -1,0 +1,14 @@
+{
+  "playlists": [
+    {
+      "userId": "57bfd0ef-a107-477e-a0da-e8b4c0674115",
+      "title": "Test",
+      "_id": "6545c9c5-aee2-4028-b2c9-756b43087b0c"
+    },
+    {
+      "userId": "57bfd0ef-a107-477e-a0da-e8b4c0674115",
+      "title": "Monkey",
+      "_id": "1bf43162-4c5d-41fd-baae-84ced3861faa"
+    }
+  ]
+}

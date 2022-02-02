@@ -1,4 +1,5 @@
 import { db } from "../models/db.js";
+import { AddPlaylistSpec, AddTrackSpec } from "../models/joi-schemas.js";
 
 export const dashboardController = {
   index: {
@@ -17,6 +18,19 @@ export const dashboardController = {
   },
 
   addPlaylist: {
+    validate: {
+      payload: AddPlaylistSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h
+          .view("dashboard-view", {
+            title: "Add Playlist error",
+            errors: error.details,
+          })
+          .takeover()
+          .code(400);
+      },
+    },
     handler: async (req, h) => {
       const loggedInUser = req.auth.credentials;
       const newPlaylist = {
@@ -36,26 +50,31 @@ export const dashboardController = {
   },
 
   addTrack: {
+    validate: {
+      payload: AddTrackSpec,
+      async failAction(req, h, error) {
+        const playlist = await db.playlistStore.getPlaylistById(req.params.id);
+        const viewData = {
+          playlist,
+          errors: error.message,
+        };
+        return h.view("playlist-view", viewData).takeover().code(400);
+      },
+    },
     handler: async (req, h) => {
       const { name, duration } = req.payload;
       const track = {
         name,
         duration,
       };
-      const pl = await db.playlistStore.addTrackToPlaylist(
-        req.params.id,
-        track
-      );
-      return h.redirect(`/dashboard/playlist/${pl._id}`);
+      const pl = await db.trackStore.addTrack(req.params.id, track);
+      return h.redirect(`/dashboard/playlist/${req.params.id}`);
     },
   },
 
   deleteTrack: {
     handler: async (req, h) => {
-      const res = await db.playlistStore.deleteTrackFromPlaylist(
-        req.params.id,
-        req.params.trackId
-      );
+      const res = await db.trackStore.deleteTrack(req.params.trackId);
       console.log(res);
       return h.redirect(`/dashboard/playlist/${req.params.id}`);
     },
