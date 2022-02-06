@@ -1,3 +1,4 @@
+import { view } from "@hapi/vision/lib/schemas.js";
 import { db } from "../models/db.js";
 import { AddPlaylistSpec, AddTrackSpec } from "../models/joi-schemas.js";
 
@@ -21,21 +22,26 @@ export const dashboardController = {
     validate: {
       payload: AddPlaylistSpec,
       options: { abortEarly: false },
-      failAction: function (request, h, error) {
-        return h
-          .view("dashboard-view", {
-            title: "Add Playlist error",
-            errors: error.details,
-          })
-          .takeover()
-          .code(400);
+      failAction: async (req, h, error) => {
+        const loggedInUser = req.auth.credentials;
+        const playlists = await db.playlistStore.getUserPlaylists(
+          loggedInUser._id
+        );
+
+        const viewData = {
+          title: "Playtime Dashboard",
+          user: loggedInUser,
+          playlists,
+          errors: error.details,
+        };
+        return h.view("dashboard-view", viewData).takeover().code(400);
       },
     },
     handler: async (req, h) => {
       const loggedInUser = req.auth.credentials;
       const newPlaylist = {
         userId: loggedInUser._id,
-        title: req.payload.title,
+        title: req.payload.name,
       };
       await db.playlistStore.addPlaylist(newPlaylist);
       return h.redirect("/dashboard");
@@ -45,7 +51,10 @@ export const dashboardController = {
   showPlaylist: {
     handler: async (req, h) => {
       const playlist = await db.playlistStore.getPlaylistById(req.params.id);
-      return h.view("playlist-view", playlist);
+      const viewData = {
+        playlist,
+      };
+      return h.view("playlist-view", viewData);
     },
   },
 
@@ -62,9 +71,10 @@ export const dashboardController = {
       },
     },
     handler: async (req, h) => {
-      const { name, duration } = req.payload;
+      const { title, artist, duration } = req.payload;
       const track = {
-        name,
+        title,
+        artist,
         duration,
       };
       const pl = await db.trackStore.addTrack(req.params.id, track);
@@ -75,7 +85,6 @@ export const dashboardController = {
   deleteTrack: {
     handler: async (req, h) => {
       const res = await db.trackStore.deleteTrack(req.params.trackId);
-      console.log(res);
       return h.redirect(`/dashboard/playlist/${req.params.id}`);
     },
   },

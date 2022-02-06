@@ -41,7 +41,6 @@ export const playlistMemStore = {
 
   async deleteTrackFromPlaylist(id, trackId) {
     const pl = playlists.find((playlist) => playlist._id === id);
-    console.log(pl);
     pl.tracks.splice(
       pl.tracks.findIndex((track) => track._id === trackId),
       1

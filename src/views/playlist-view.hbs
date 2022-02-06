@@ -11,13 +11,13 @@
       <th></th>
     </thead>
     <tbody>
-      {{#each tracks}}
+      {{#each playlist.tracks}}
         <tr>
-          <td>{{name}}</td>
-          <td>{{../playlist.title}}</td>
+          <td>{{title}}</td>
+          <td>{{artist}}</td>
           <td>{{duration}}</td>
           <td>
-            <a href="/dashboard/playlist/{{../_id}}/deletetrack/{{_id}}" class="link">
+            <a href="/dashboard/playlist/{{../playlist._id}}/deletetrack/{{_id}}" class="link">
               <i class="fas fa-trash"></i>
             </a>
           </td>

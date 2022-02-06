@@ -10,21 +10,22 @@ export const userMemStore = {
   async addUser(user) {
     user._id = v4();
     users.push(user);
+    return user;
   },
 
   async getUserById(id) {
-    return users.find((user) => user._id === id);
+    const returnedUser = users.find((user) => user._id === id);
+    return returnedUser === undefined ? null : returnedUser;
   },
 
   async getUserByEmail(email) {
-    return users.find((user) => user.email === email);
+    const returnedUser = users.find((user) => user.email === email);
+    return returnedUser === undefined ? null : returnedUser;
   },
 
   async deleteUserById(id) {
-    return users.splice(
-      users.findIndex((user) => user._id === id),
-      1
-    );
+    const index = users.findIndex((user) => user._id === id);
+    if (index !== -1) users.splice(index, 1);
   },
 
   async deleteAll() {

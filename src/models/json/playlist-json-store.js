@@ -9,7 +9,7 @@ db.data = { playlists: [] };
 export const playlistJsonStore = {
   async getAllPlaylists() {
     await db.read();
-    return db.data.playlistsl;
+    return db.data.playlists;
   },
 
   async addPlaylist(playlist) {
@@ -37,11 +37,11 @@ export const playlistJsonStore = {
     const index = db.data.playlists.findIndex(
       (playlist) => playlist._id === id
     );
-    db.data.playlists.splice(index, 1);
+    if (index !== -1) db.data.playlists.splice(index, 1);
     await db.write();
   },
 
-  async deleteAllPlaylists() {
+  async deleteAll() {
     db.data.playlists = [];
     await db.write();
   },

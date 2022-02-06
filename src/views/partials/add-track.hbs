@@ -1,8 +1,12 @@
 <section class="section">
-  <form action="/dashboard/playlist/{{_id}}/addtrack" method="POST">
+  <form action="/dashboard/playlist/{{playlist._id}}/addtrack" method="POST">
     <div class="field">
       <label for="name" class="label">Track Name</label>
-      <input type="text" class="input" name="name" />
+      <input type="text" class="input" name="title" />
+    </div>
+    <div class="field">
+      <label for="name" class="label">Artist</label>
+      <input type="text" class="input" name="artist" />
     </div>
     <div class="field">
       <label for="duration" class="label">Track Length (mins)</label>

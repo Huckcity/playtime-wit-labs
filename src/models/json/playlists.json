@@ -1,14 +1,20 @@
 {
   "playlists": [
     {
-      "userId": "57bfd0ef-a107-477e-a0da-e8b4c0674115",
-      "title": "Test",
-      "_id": "6545c9c5-aee2-4028-b2c9-756b43087b0c"
+      "name": "Playlist 2",
+      "_id": "7c800d17-05ed-4f6e-8255-4bf36be72219"
     },
     {
-      "userId": "57bfd0ef-a107-477e-a0da-e8b4c0674115",
-      "title": "Monkey",
-      "_id": "1bf43162-4c5d-41fd-baae-84ced3861faa"
+      "name": "Playlist 3",
+      "_id": "6b7f0f37-e0d3-4283-9f03-72c5db713ba5"
+    },
+    {
+      "name": "Playlist 4",
+      "_id": "0905eb2a-4353-4616-9379-0c5c2669e272"
+    },
+    {
+      "name": "Playlist 5",
+      "_id": "a9b803ca-cd64-43a4-9e96-e73fabe517a7"
     }
   ]
 }

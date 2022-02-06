@@ -17,7 +17,7 @@ export const AddPlaylistSpec = {
 };
 
 export const AddTrackSpec = {
-  name: Joi.string().required(),
+  title: Joi.string().required(),
   artist: Joi.string().required(),
   duration: Joi.number().required().min(1).max(15),
 };

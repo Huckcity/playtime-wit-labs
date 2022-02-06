@@ -10,6 +10,13 @@ export const db = {
   playlistStore: null,
   trackStore: null,
 
+  // Memory Store
+  // init() {
+  //   this.userStore = userMemStore;
+  //   this.playlistStore = playlistMemStore;
+  // },
+
+  // JSON Store
   init() {
     this.userStore = userJsonStore;
     this.playlistStore = playlistJsonStore;

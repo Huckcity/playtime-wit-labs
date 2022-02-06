@@ -11,6 +11,20 @@
       "duration": "4",
       "_id": "64fc44f5-d1fa-43d5-b05b-143686f8b8fa",
       "playlistid": "6545c9c5-aee2-4028-b2c9-756b43087b0c"
+    },
+    {
+      "title": "Pure class",
+      "artist": "Metallica",
+      "duration": 5,
+      "_id": "07b6c55f-f84f-4619-87df-65ccebd8f749",
+      "playlistid": "8cbe9fc3-9d07-477a-bbc8-a300474baccc"
+    },
+    {
+      "title": "Test",
+      "artist": "123",
+      "duration": 1,
+      "_id": "6b6cbfbb-dce4-485e-bbf8-45b94361602c",
+      "playlistid": "6938d21b-1902-4a1d-8a6e-a97232503e15"
     }
   ]
 }
